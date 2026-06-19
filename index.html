@@ -228,7 +228,7 @@ opacity:.9;
 const SUPABASE_URL = "https://tuihpvykuqbqnfyfepql.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1aWhwdnlrdXFicW5meWZlcHFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3Mjg4OTcsImV4cCI6MjA5NzMwNDg5N30.HZKS8CgFLjkZ-Bx2AIjFjurH3IsKjvf37Ft852CzJsQ";
 
-const supabase = window.supabase.createClient(
+const db = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_ANON_KEY
 );
@@ -247,7 +247,7 @@ async function loadStats() {
     // Total Employees
 
     const { count: totalEmployees, error: userError } =
-        await supabase
+        await db
         .from('users')
         .select('*', { count: 'exact', head: true });
 
@@ -262,7 +262,8 @@ async function loadStats() {
     // Completed Profiles
 
     const { count: completedProfiles, error: profileError } =
-        await supabase
+        await db
+    
         .from('employee_profiles')
         .select('*', { count: 'exact', head: true })
         .eq('profile_completed', true);
@@ -289,7 +290,7 @@ async function loadPendingEmployees() {
     // Get all employee users
 
 const { data: users, error } =
-    await supabase
+    await db
     .from('users')
     .select('*')
     .eq('role', 'User')
@@ -318,7 +319,7 @@ console.log("Users found:", users);
                 console.log("Checking:", user.id, user.full_name);
 
         const { data: profile } =
-            await supabase
+            await db
             .from('employee_profiles')
             .select('profile_completed')
             .eq('user_id', user.id)
