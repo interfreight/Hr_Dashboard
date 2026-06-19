@@ -288,11 +288,16 @@ async function loadPendingEmployees() {
 
     // Get all employee users
 
-    const { data: users, error } =
-        await supabase
-        .from('users')
-        .select('*')
-        .order('id');
+const { data: users, error } =
+    await supabase
+    .from('users')
+    .select('*')
+    .eq('role', 'User')
+    .eq('status', 'Active')
+    .order('id');
+
+console.log("Users found:", users);
+
 
     if(error){
         console.error(error);
@@ -310,6 +315,7 @@ async function loadPendingEmployees() {
     let pendingCount = 0;
 
     for(const user of users){
+                console.log("Checking:", user.id, user.full_name);
 
         const { data: profile } =
             await supabase
@@ -352,6 +358,7 @@ async function loadPendingEmployees() {
             <div class="employee-info">
                 <h3>No Pending Employees</h3>
                 <p>All employee profiles are completed.</p>
+
             </div>
 
         </div>
