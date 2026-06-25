@@ -291,12 +291,11 @@ async function loadPendingEmployees() {
     // Get all employee users
 
 const { data: users, error } =
-    await db
-    .from('users')
-    .select('*')
-    .eq('role', 'User', 'IT')
-    .eq('status', 'Active')
-    .order('id');
+await db
+.from('users')
+.select('*')
+.eq('status', 'Active')
+.order('id');
 
 console.log("Users found:", users);
 
