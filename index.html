@@ -294,7 +294,7 @@ const { data: users, error } =
     await db
     .from('users')
     .select('*')
-    .eq('role', 'User')
+    .eq('role', 'User', 'IT')
     .eq('status', 'Active')
     .order('id');
 
