@@ -90,7 +90,7 @@ width:120px;
 }
 .stats{
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(4,1fr);
 gap:20px;
 margin-bottom:30px;
 }
@@ -201,6 +201,11 @@ opacity:.9;
 <div class="number" id="completedEmployees">0</div>
 </div>
 
+<div class="card">
+<h3>Approved Leaves</h3>
+<div class="number" id="approvedLeaves">0</div>
+</div>
+    
 </div>
 
 <div class="queue">
@@ -223,6 +228,28 @@ opacity:.9;
 </div>
 
 </div>
+    <div class="queue">
+
+<h2>🔔 Approved Leave Notifications</h2>
+
+<div id="approvedLeaveNotifications">
+
+<div class="employee">
+
+<div class="employee-info">
+
+<h3>Loading...</h3>
+
+<p>Please wait...</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+    
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 
